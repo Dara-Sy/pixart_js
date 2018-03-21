@@ -1,12 +1,39 @@
 
+var squares = []
+var brushEl = document.querySelector(".brush")
+var input = document.querySelector("#color-field")
+var canvas = document.querySelector(".canvas")
+var color = null
 
-// commit 1
+createCanvas()
 
-let setColor = document.querySelector('#set-color');
+document.querySelector("form").addEventListener("submit", (event) => {
+ event.preventDefault()
+ setColor()
+})
 
-setColor.addEventListener('click', function() {
-  document.brush.style.backgroundColor = "red";
-});
+function getColor(){
+ color = input.value
+}
+
+function setColor(){
+ getColor()
+ brushEl.style.backgroundColor = color;
+}
+
+function createCanvas(){
+   for(let i = 0; i < 8000; i++){
+     // create div element
+     // add class 'square' to that element
+     var square= document.createElement('div')
+     square.setAttribute('class', "square")
+     canvas.appendChild(square)
+     square.addEventListener("mouseover", function (event){
+       event.target.style.backgroundColor = color;
+     })
+   }
+
+}
 
 
 // document.addEventListener("click", function(){
